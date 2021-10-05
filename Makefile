@@ -6,7 +6,7 @@
 #    By: kmumm <kmumm@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/04 16:16:20 by kmumm             #+#    #+#              #
-#    Updated: 2021/10/04 22:41:55 by kmumm            ###   ########.fr        #
+#    Updated: 2021/10/05 21:11:35 by kmumm            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,14 @@ LIST =	ft_isalpha\
 		ft_memcpy\
 		ft_memmove\
 		ft_strlcpy\
+		ft_strlcat\
+		ft_toupper\
+		ft_tolower\
+		ft_strchr\
+		ft_strrchr\
+		ft_strncmp\
+		ft_memchr\
+		ft_memcmp\
 
 SRCS = $(addsuffix .c, $(LIST))
 OBJS = $(addsuffix .o, $(LIST))

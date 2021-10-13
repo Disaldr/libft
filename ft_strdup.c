@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strrchr.c                                       :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: kmumm <kmumm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/05 19:36:48 by kmumm             #+#    #+#             */
-/*   Updated: 2021/10/13 14:03:30 by kmumm            ###   ########.fr       */
+/*   Created: 2021/10/13 12:17:01 by kmumm             #+#    #+#             */
+/*   Updated: 2021/10/13 12:40:02 by kmumm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strrchr(const char *s, int c)
+char	*ft_strdup(const char *s1)
 {
+	size_t	length;
 	size_t	index;
-	size_t	location;
+	char	*result;
 
-	index = 0;
-	location = 0;
-	while (s[index])
-	{
-		if (s[index] == (unsigned char) c)
-			location = index;
-		++index;
-	}
-	if (s[index] == (unsigned char) c)
-		location = index;
-	if (location == 0 && s[0] != (unsigned char) c)
+	length = ft_strlen(s1);
+	result = ft_calloc(length + 1, sizeof(char));
+	if (!result)
 		return (NULL);
-	return ((char *) s + location);
+	index = 0;
+	while (s1[index])
+	{
+		result[index] = s1[index];
+		index++;
+	}
+	result[index] = '\0';
+	return (result);
 }

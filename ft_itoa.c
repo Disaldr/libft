@@ -6,8 +6,53 @@
 /*   By: kmumm <kmumm@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/13 18:47:37 by kmumm             #+#    #+#             */
-/*   Updated: 2021/10/13 18:47:39 by kmumm            ###   ########.fr       */
+/*   Updated: 2021/10/19 21:10:38 by kmumm            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_itoa(int n);
+#include "libft.h"
+
+static long	ft_dec(int pow)
+{
+	long	result;
+
+	result = 1;
+	while (pow)
+	{
+		result *= 10;
+		--pow;
+	}
+	return (result);
+}
+
+static int	ft_abs(int nbr)
+{
+	if (nbr < 0)
+		return (-nbr);
+	return (nbr);
+}
+
+char	*ft_itoa(int n)
+{
+	char	*result;
+	int		count;
+
+	count = 1;
+	while (n / ft_dec(count))
+		++count;
+	if (n < 0)
+		++count;
+	result = (char *) malloc(sizeof(char) * (count + 1));
+	if (!result)
+		return (NULL);
+	result[0] = '0';
+	result[count--] = '\0';
+	if (n < 0)
+		result[0] = '-';
+	while (n != 0)
+	{
+		result[count--] = ft_abs(n % 10) + '0';
+		n /= 10;
+	}
+	return (result);
+}

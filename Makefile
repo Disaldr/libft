@@ -6,7 +6,7 @@
 #    By: kmumm <kmumm@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/04 16:16:20 by kmumm             #+#    #+#              #
-#    Updated: 2021/10/05 21:11:35 by kmumm            ###   ########.fr        #
+#    Updated: 2021/10/27 23:34:39 by kmumm            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,26 +31,66 @@ LIST =	ft_isalpha\
 		ft_strncmp\
 		ft_memchr\
 		ft_memcmp\
+		ft_strnstr\
+		ft_atoi\
+		ft_calloc\
+		ft_strdup\
+		ft_substr\
+		ft_strjoin\
+		ft_strtrim\
+		ft_split\
+		ft_itoa\
+		ft_strmapi\
+		ft_striteri\
+		ft_putchar_fd\
+		ft_putstr_fd\
+		ft_putendl_fd\
+		ft_putnbr_fd\
 
+BONUS_LIST =	ft_lstnew\
+		ft_lstadd_front\
+		ft_lstsize\
+		ft_lstlast\
+		ft_lstadd_back\
+		ft_lstdelone\
+		ft_lstclear\
+		ft_lstiter\
+		ft_lstmap\
+		
 SRCS = $(addsuffix .c, $(LIST))
 OBJS = $(addsuffix .o, $(LIST))
-
+SRCS_BONUS = $(addsuffix .c, $(BONUS_LIST))
+OBJS_BONUS = $(addsuffix .o, $(BONUS_LIST))
+HEADER = libft.h
+CC = gcc
 FLAGS = -Wall -Werror -Wextra
+
+
+ifdef BONUS_FLAG
+	SRC = $(SRCS) $(SRCS_BONUS)
+	OBJ = $(OBJS) $(OBJS_BONUS)
+else
+	SRC = $(SRCS)
+	OBJ = $(OBJS)
+endif
 
 all : $(NAME)
 
-$(NAME) : $(OBJS) libft.h
+$(NAME) : $(OBJ) $(HEADER)
 	ar rcs $(NAME) $?
 
-.c.o: $(SRCS)
-	gcc $(FLAGS) -c -o $@ $<
+.c.o: $(SRC)
+	$(CC) $(FLAGS) -c -o $@ $<
 
 clean: 
-	@rm -f $(OBJS)
+	rm -f $(OBJS) $(OBJS_BONUS)
 
-fclean: 
-	@rm -f $(NAME)
+fclean: clean
+	rm -f $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+bonus: 
+	make BONUS_FLAG=1 all
+
+.PHONY: all clean fclean re bonus
